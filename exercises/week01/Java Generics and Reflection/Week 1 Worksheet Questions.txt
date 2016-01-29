@@ -1,0 +1,30 @@
+Week 1 Worksheet - Java Generics and Reflection (introspection)
+
+1. Reasons for using generics: Enables us to create a single class that holds multiple types,
+			       Avoids repetition of classes
+
+2. Benefits for using generics: Stronger type checking at compile time
+                                Minimises need for casting 
+                                Reduces likelihood of runtime exceptions occuring
+
+3. At compile time, the object myAccount cannot be converted to type BankAccount.
+   This then leads on to another error in that it cannot find the method deposit to perform
+   on myAccount because it is not of type BankAccount.
+
+4. Declaring myAccount as of type BankAccount instead of type Object still throws a compilation error.
+   It would appear that the variable baCls still holds a value of type Object when newInstance() is called.
+
+5. The dynamic cast included at this step converts the baCls.newInstance() from type Object to type
+   BankAccount. The compilation now runs correctly. However, the code is not safe because even though it 
+   compiles correctly, casting can cause runtime exceptions. The cast operation is checked by the JVM. Casting
+   bypasses the safety checks that are built into the Java compiler and so will give the impression that the code
+   is correct when in fact it can fail when put into production.
+
+6. Driver class compiles correctly. There are no errors because the generic class used for the initial 
+   decleration now specifies that baCls is of type BankAccount. This means that using generics enables us to
+   minimise our usage of dynamic casting which are prone to runtime errors.
+
+7. Runtime output:
+
+	115.0
+	EQUAL
