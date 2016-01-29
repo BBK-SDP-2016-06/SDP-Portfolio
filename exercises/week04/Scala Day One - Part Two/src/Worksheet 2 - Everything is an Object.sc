@@ -188,18 +188,18 @@ var sentence = ""
 for(i <- v1.indices) sentence += v1.apply(i) + " "
 sentence = sentence.substring(0, sentence.length() - 1) + "!"
 sentence is "The dog visited the firehouse!"
+
+
+
 //Question 18
-
-
-
 sentence = ""
 for(i <- v1.indices) sentence += v1.apply(i).reverse + " "
 sentence = sentence.substring(0, sentence.length() - 1)
 sentence is "ehT god detisiv eht esuoherif"
+
+
+
 //Question 19
-
-
-
 sentence = ""
 for(i <- v1.indices) sentence = v1.apply(i) + " " + sentence
 sentence = sentence.substring(0, sentence.length() - 1)
