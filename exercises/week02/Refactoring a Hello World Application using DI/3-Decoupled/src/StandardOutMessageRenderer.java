@@ -1,0 +1,20 @@
+public class StandardOutMessageRenderer {
+    private HelloWorldMessageProvider messageProvider = null;
+
+    public void render() {
+        if(this.messageProvider == null) {
+            throw new RuntimeException(
+                    "You must set the property messageProvider of class " + StandardOutMessageRenderer.class.getName());
+        }
+        System.out.println(this.messageProvider.getMessage());
+    }
+
+    public void setMessageProvider(HelloWorldMessageProvider provider) {
+        this.messageProvider = provider;
+    }
+
+    public HelloWorldMessageProvider getMessageProvider() {
+        return this.messageProvider;
+    }
+
+}
