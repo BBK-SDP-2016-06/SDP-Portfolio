@@ -1,0 +1,9 @@
+a) The strategy design pattern is used to define a set of algorithms that are encapsulated and can be swapped to carry
+   out a specific behaviour.
+
+b) This pattern can be used when:
+    - the only apparent difference between a set of related classes is their behaviour.
+    - An algorithm is required that has multiple variations.
+    - Algorithms access or utilize data that a calling code shouldn't be exposed to.
+    - The behaviour of a class gets defined at runtime.
+    - Multiple conditional statements are present (can be hard to maintain / change)
