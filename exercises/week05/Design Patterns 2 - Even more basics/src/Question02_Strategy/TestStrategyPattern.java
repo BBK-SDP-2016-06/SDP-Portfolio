@@ -1,4 +1,4 @@
-package Question2_Strategy;
+package Question02_Strategy;
 
 public class TestStrategyPattern {
 

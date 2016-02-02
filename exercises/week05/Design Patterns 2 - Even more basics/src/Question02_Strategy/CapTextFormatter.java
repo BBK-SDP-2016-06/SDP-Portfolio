@@ -1,10 +1,10 @@
-package Question2_Strategy;
+package Question02_Strategy;
 
-public class LowerTextFormatter implements TextFormatter{
+public class CapTextFormatter implements TextFormatter{
 
     @Override
     public void format(String text) {
-        String formattedString = text.toLowerCase();
+        String formattedString = text.toUpperCase();
         System.out.println("[" + this.getClass().getName() + "]: " + formattedString);
     }
 

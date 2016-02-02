@@ -1,0 +1,8 @@
+"In general, the details of object construction, such as instantiating and initialising the components that comprise
+the object, are kept within the object, often as part of its constructor."
+
+The above statement holds true and is suitable for objects that are simple to create and the construction process
+always follows a definite number of steps. However, in order to create a complex object that can be implemented in
+different ways using different algorithms requires multiple constructors within its class (construction bloat). Due to
+the containment of all construction processes, the object does not only suffer from construction bloat, but also
+becomes less modular (less standardised and more complex to arrange, understand, and maintain).
