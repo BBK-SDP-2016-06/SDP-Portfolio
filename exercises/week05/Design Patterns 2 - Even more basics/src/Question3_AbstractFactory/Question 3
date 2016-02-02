@@ -1,0 +1,7 @@
+The abstract factory design pattern can be used when:
+    - The creation of concrete objects should be independent of the program that uses them.
+    - A program uses multiple families of objects, and these in turn are used together.
+    - Libraries are to be used without the need to expose implementation details.
+    - Concrete classes should be decoupled from clients.
+
+(Obtained from Design Patterns refcardz)

@@ -7,3 +7,5 @@ b) This pattern can be used when:
     - Algorithms access or utilize data that a calling code shouldn't be exposed to.
     - The behaviour of a class gets defined at runtime.
     - Multiple conditional statements are present (can be hard to maintain / change)
+
+(Obtained from Design Patterns refcardz)
