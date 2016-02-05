@@ -5,4 +5,6 @@ a) The Facade Design Pattern involves creating a simplified interface that hides
 b) The Facade Design Pattern gets implemented when an interface is required to provide access to a complex system
    of interfaces or classes, and when dependencies exist between system implementations and clients. The pattern
    provides us with a useful tool in code refactoring as it simplifies complicated relationships into a manageable
-   interface, as well as providing a natural layering / hierarchy of classes and subclasses.
+   interface, as well as providing a natural layering / hierarchy of classes and subclasses. In essence, the facade
+   is aptly named as it defined a higher level interface that makes the system easier to use. In principle,
+   new and adaptive implementations within the subclasses should not affect the facade.
