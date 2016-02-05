@@ -1,0 +1,12 @@
+a) The Composite Design Pattern composes objects into tree-like hierarchical structures that comprise of part-whole
+   relationships. This enables each object within the tree to be treated independently or as a set of compositions
+   of objects.
+
+b) This design pattern can be used when a hierarchical representation is required of the objects needed in the program.
+   It is also applicable when certain components used by the client can be further sub-divided into smaller components.
+
+c) The four participants of the Composite Design Pattern are:
+    - Client: uses Component interface to interact with objects in the hierarchy
+    - Component: defines interface for Composite and Leaf
+    - Composite: defines behaviour of the Component in terms of adding / removing children (nodes)
+    - Leaf: defines behaviour of the elements in the composition
