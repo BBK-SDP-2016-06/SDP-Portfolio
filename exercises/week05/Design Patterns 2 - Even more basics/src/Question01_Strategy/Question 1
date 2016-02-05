@@ -1,5 +1,6 @@
 a) The strategy design pattern is used to define a set of algorithms that are encapsulated and can be swapped to carry
-   out a specific behaviour.
+   out a specific behaviour. This makes them interchangeable and enables the algorithms to vary independently from
+   the main program.
 
 b) This pattern can be used when:
     - the only apparent difference between a set of related classes is their behaviour.
