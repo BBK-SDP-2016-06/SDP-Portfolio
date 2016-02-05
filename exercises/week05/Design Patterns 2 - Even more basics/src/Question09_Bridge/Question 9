@@ -1,0 +1,6 @@
+The Bridge Design Pattern should be used when the designer foresees that there will be variations and changes made
+to both the implementing classes and the abstractions. Two hierarchies are created; one for the abstraction and one
+for the implementation and the join relationship between their respective parent classes are referred to as the
+'bridge'. This decouples the implementation so each hierarchy can be extended / changed independently from the other.
+According to Freeman & Robson (2014), this pattern is particularly useful in graphics and windowing systems that
+require to perform over multiple platforms.
