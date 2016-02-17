@@ -21,5 +21,7 @@ val person1 = Person("George Shiangoli")
 val person2 = Person("George", "Shiangoli")
 person1.first
 person2.first
-//defining Person as a case class now enables us to have two versions
-//of the apply method.
+/*
+defining Person as a case class now enables us to have two versions
+of the apply method.
+*/
