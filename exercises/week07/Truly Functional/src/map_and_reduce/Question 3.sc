@@ -12,7 +12,7 @@ v.reduce((sum, n) => sum + n) is 1111
 using for loops.
  */
 
-import com.atomicscala.AtomicTest._
+import _root_.com.atomicscala.AtomicTest._
 
 val v = Vector(1, 10, 100, 1000)
 
