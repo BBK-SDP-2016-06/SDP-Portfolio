@@ -15,18 +15,32 @@ according to the following description:
 Tip: a sequence of type A has type Seq[A].
  */
 
-trait Publication
-trait Manuscript {
-  def length: Int
-  def author: Author
-}
-case class Book(a: Author, pages: Int) extends Manuscript with Publication {
-  override def length = pages
-  override def author = a
-}
-case class Periodical(editor: Editor,
-                      issues: Seq[Issue]) extends Publication
+//trait Publication
+//trait Manuscript {
+//  def length: Int
+//  def author: Author
+//}
+//case class Book(a: Author, pages: Int) extends Manuscript with Publication {
+//  override def length = pages
+//  override def author = a
+//}
+//case class Periodical(editor: Editor,
+//                      issues: Seq[Issue]) extends Publication
+//
+//case class Author()
+//case class Editor()
+//case class Issue(vol: Int, issueNo: Int, articles: Seq[Manuscript])
+
+//Alternative solution -----------------------------------------------------
+
+sealed trait Publication
+final case class Book(script: Manuscript) extends Publication
+final case class Periodical(editor: Editor,
+                            issues: Seq[Issue]) extends Publication
 
 case class Author()
 case class Editor()
-case class Issue(vol: Int, issueNo: Int, articles: Seq[Manuscript])
+case class Issue(vol: Volume, issueNot: Int, articles: Seq[Manuscript])
+case class Volume()
+
+case class Manuscript(length: Int, author: Author)
