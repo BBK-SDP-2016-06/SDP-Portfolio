@@ -25,9 +25,7 @@ res26: String = foo
 */
 
 trait Sum[A, B]
-
 case class Left[A, B](value: A) extends Sum[A, B]
-
 case class Right[A, B](value: B) extends Sum[A, B]
 
 Left[Int, String](1).value
