@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException
+
 //Question 8
 
 /*
@@ -24,11 +26,19 @@ list.tail.head // returns 2 as an Int
 list.tail.tail // returns Pair(3, Empty()) as a LinkedList[Int]
 [Yes, this is very similar to the example from class.]
  */
-
-sealed trait LinkedList[A]
+sealed trait LinkedList[A] {
+  def head: A
+  def tail: LinkedList[A]
+}
 
 final case class Pair[A](head: A, tail: LinkedList[A]) extends LinkedList[A]
-final case class Empty[A]() extends LinkedList[A]
+final case class Empty[A]() extends LinkedList[A] {
+  def head = throw new NoSuchElementException("Nil.head")
+  def tail = throw new NoSuchElementException("Nil.tail")
+}
 
 val list: LinkedList[Int] = Pair(1, Pair(2, Pair(3, Empty())))
 list.isInstanceOf[LinkedList[Int]]
+list.head
+list.tail.head
+list.tail.tail
