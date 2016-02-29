@@ -10,12 +10,8 @@ public class OutInstruction extends Instruction {
 
     private int register;
 
-    public OutInstruction(String label, String op) {
-        super(label, op);
-    }
-
     public OutInstruction(String label, int register) {
-        this(label, "out");
+        super(label, "out");
         this.register = register;
     }
 

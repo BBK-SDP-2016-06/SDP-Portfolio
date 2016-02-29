@@ -9,12 +9,8 @@ public class BnzInstruction extends Instruction {
     private int register;
     private String nextLabel;
 
-    public BnzInstruction(String label, String opcode) {
-        super(label, opcode);
-    }
-
     public BnzInstruction(String label, int register, String nextLabel) {
-        this(label, "bnz");
+        super(label, "bnz");
         this.register = register;
         this.nextLabel = nextLabel;
     }
@@ -29,6 +25,6 @@ public class BnzInstruction extends Instruction {
 
     @Override
     public String toString() {
-        return super.toString() + " loops to " + nextLabel + " while register " + register + " value is not 0" ;
+        return super.toString() + " loops back to " + nextLabel + " while register " + register + " value is not 0" ;
     }
 }
