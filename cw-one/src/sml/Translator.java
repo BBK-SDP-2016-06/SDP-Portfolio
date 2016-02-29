@@ -125,8 +125,16 @@ public class Translator {
 //            default:
 //                return null;
 //        }
-        String className = "sml." + ins.substring(0, 1).toUpperCase() + ins.substring(1) + "Instruction";
-        System.out.println(className);
+        String packageName = this.getClass().getPackage().getName();
+        String className = packageName + "." + ins.substring(0, 1).toUpperCase() + ins.substring(1) + "Instruction";
+        try {
+            Class c = Class.forName(className);
+            System.out.println(c);
+        } catch (ClassNotFoundException cnfE) {
+            cnfE.printStackTrace();
+            System.exit(-1);
+        }
+
         return null;
     }
 
