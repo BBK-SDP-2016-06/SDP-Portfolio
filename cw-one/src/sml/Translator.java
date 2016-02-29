@@ -8,27 +8,38 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-/*
- * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
+/**
+ * This class represents a translator of an SML program.
  */
 public class Translator {
 
-    private static final String PATH = "C:\\Users\\George\\Documents\\Computer Science\\05 - Software Design and Programming\\SDP-Portfolio\\cw-one\\src\\testing\\";
-    // word + line is the part of the current line that's not yet processed
-    // word has no whitespace
-    // If word and line are not empty, line begins with whitespace
-    private String line = "";
-    private Labels labels; // The labels of the program being translated
+    private static final String PATH = "C:\\Users\\George\\Documents\\Computer Science" +
+                                       "\\05 - Software Design and Programming\\SDP-Portfolio\\cw-one\\src\\testing\\";
+    private String line = "";               //Represents the current line being scanned
+    private Labels labels;                  // The labels of the program being translated
     private ArrayList<Instruction> program; // The program to be created
-    private String fileName; // source file of SML code
+    private String fileName;                // source file of SML code
 
+    /**
+     * Initialises this fileName to the absolute root of the file to be translated.
+     *
+     * @param fileName the name of the SML file to be translated. This should be provided
+     *                 in the form name.sml
+     */
     public Translator(String fileName) {
         this.fileName = PATH + fileName;
     }
 
-    // translate the small program in the file into lab (the labels) and
-    // prog (the program)
-    // return "no errors were detected"
+    /**
+     * Translates the small program in the file into a series of labels and instructions.
+     * The code in this method has also been amended in that an error is thrown and dealt
+     * with if the program contains duplicate labels (line identifiers).
+     *
+     * @param lab labels of the program
+     * @param prog a list of instructions
+     * @return true if the entire program is read and translated correctly, false if any errors
+     * were detected in terms of IO or syntax of the written program.
+     */
     public boolean readAndTranslate(Labels lab, ArrayList<Instruction> prog) {
 
         try (Scanner sc = new Scanner(new File(fileName))) {
@@ -78,9 +89,17 @@ public class Translator {
         return true;
     }
 
-    // line should consist of an MML instruction, with its label already
-    // removed. Translate line into an instruction with label label
-    // and return the instruction
+    /**
+     * From the string currently stored in this line, this method translates the remaining
+     * SML statement into an instruction and returns this in the form of an Instruction object.
+     * This method uses java reflection to infer the type of instruction object that should be created
+     * based upon the next word in the statement scanned. This enables our SML language to be extended
+     * with further subclasses of instruction without changing this code.
+     *
+     * @param label the identifier that corresponds to the instruction to be translated and retrieved.
+     * @return the instruction that this label corresponds to. The instruction is returned in a state
+     * ready to be executed by the machine.
+     */
     public Instruction getInstruction(String label) {
         if (line.equals("")) {
             return null;
@@ -97,6 +116,7 @@ public class Translator {
             int numberOfParams = ctor.getParameterCount();
             Object[] args = new Object[numberOfParams];
             args[0] = label;
+
             for(int i = 1; i < args.length; i++) {
                 if(parameterTypes[i] == int.class) {
                     args[i] = scanInt();
@@ -114,9 +134,12 @@ public class Translator {
         }
     }
 
-    /*
-     * Return the first word of line and remove it from line. If there is no
-     * word, return ""
+    /**
+     * This method returns the first word of the current line and removes it from the
+     * program line.
+     *
+     * @return the first word of the current line. If there is no word, an empty string
+     * is returned "".
      */
     private String scan() {
         line = line.trim();
@@ -132,8 +155,13 @@ public class Translator {
         return word;
     }
 
-    // Return the first word of line as an integer. If there is
-    // any error, return the maximum int
+    /**
+     * Returns the first word of the current line as an integer and removes it from
+     * the program line.
+     *
+     * @return the first word of the current line as an integer. If there is no word
+     * or an error, the maximum integer is returned.
+     */
     private int scanInt() {
         String word = scan();
         if (word.length() == 0) {
