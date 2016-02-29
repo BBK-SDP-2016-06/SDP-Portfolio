@@ -90,41 +90,44 @@ public class Translator {
             return null;
 
         String ins = scan();
-        switch (ins) {
-            case "add":
-                r = scanInt();
-                s1 = scanInt();
-                s2 = scanInt();
-                return new AddInstruction(label, r, s1, s2);
-            case "sub":
-                r = scanInt();
-                s1 = scanInt();
-                s2 = scanInt();
-                return new SubInstruction(label, r, s1, s2);
-            case "mul":
-                r = scanInt();
-                s1 = scanInt();
-                s2 = scanInt();
-                return new MulInstruction(label, r, s1, s2);
-            case "div":
-                r = scanInt();
-                s1 = scanInt();
-                s2 = scanInt();
-                return new DivInstruction(label, r, s1, s2);
-            case "out":
-                r = scanInt();
-                return new OutInstruction(label, r);
-            case "lin":
-                r = scanInt();
-                x = scanInt();
-                return new LinInstruction(label, r, x);
-            case "bnz":
-                r = scanInt();
-                l = scan();
-                return new BnzInstruction(label, r, l);
-            default:
-                return null;
-        }
+//        switch (ins) {
+//            case "add":
+//                r = scanInt();
+//                s1 = scanInt();
+//                s2 = scanInt();
+//                return new AddInstruction(label, r, s1, s2);
+//            case "sub":
+//                r = scanInt();
+//                s1 = scanInt();
+//                s2 = scanInt();
+//                return new SubInstruction(label, r, s1, s2);
+//            case "mul":
+//                r = scanInt();
+//                s1 = scanInt();
+//                s2 = scanInt();
+//                return new MulInstruction(label, r, s1, s2);
+//            case "div":
+//                r = scanInt();
+//                s1 = scanInt();
+//                s2 = scanInt();
+//                return new DivInstruction(label, r, s1, s2);
+//            case "out":
+//                r = scanInt();
+//                return new OutInstruction(label, r);
+//            case "lin":
+//                r = scanInt();
+//                x = scanInt();
+//                return new LinInstruction(label, r, x);
+//            case "bnz":
+//                r = scanInt();
+//                l = scan();
+//                return new BnzInstruction(label, r, l);
+//            default:
+//                return null;
+//        }
+        String className = "sml." + ins.substring(0, 1).toUpperCase() + ins.substring(1) + "Instruction";
+        System.out.println(className);
+        return null;
     }
 
     /*
