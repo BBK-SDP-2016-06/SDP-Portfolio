@@ -2,6 +2,8 @@ package sml;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -80,62 +82,38 @@ public class Translator {
     // removed. Translate line into an instruction with label label
     // and return the instruction
     public Instruction getInstruction(String label) {
-        int s1; // Possible operands of the instruction
-        int s2;
-        int r;
-        int x;
-        String l;
-
-        if (line.equals(""))
+        Instruction output = null;
+        if (line.equals("")) {
             return null;
-
-        String ins = scan();
-//        switch (ins) {
-//            case "add":
-//                r = scanInt();
-//                s1 = scanInt();
-//                s2 = scanInt();
-//                return new AddInstruction(label, r, s1, s2);
-//            case "sub":
-//                r = scanInt();
-//                s1 = scanInt();
-//                s2 = scanInt();
-//                return new SubInstruction(label, r, s1, s2);
-//            case "mul":
-//                r = scanInt();
-//                s1 = scanInt();
-//                s2 = scanInt();
-//                return new MulInstruction(label, r, s1, s2);
-//            case "div":
-//                r = scanInt();
-//                s1 = scanInt();
-//                s2 = scanInt();
-//                return new DivInstruction(label, r, s1, s2);
-//            case "out":
-//                r = scanInt();
-//                return new OutInstruction(label, r);
-//            case "lin":
-//                r = scanInt();
-//                x = scanInt();
-//                return new LinInstruction(label, r, x);
-//            case "bnz":
-//                r = scanInt();
-//                l = scan();
-//                return new BnzInstruction(label, r, l);
-//            default:
-//                return null;
-//        }
-        String packageName = this.getClass().getPackage().getName();
-        String className = packageName + "." + ins.substring(0, 1).toUpperCase() + ins.substring(1) + "Instruction";
-        try {
-            Class c = Class.forName(className);
-            System.out.println(c);
-        } catch (ClassNotFoundException cnfE) {
-            cnfE.printStackTrace();
-            System.exit(-1);
         }
 
-        return null;
+        String ins = scan();
+        String packageName = this.getClass().getPackage().getName();
+        String className = packageName + "." + ins.substring(0, 1).toUpperCase() + ins.substring(1) + "Instruction";
+
+        try {
+            Class c = Class.forName(className);
+            Constructor ctor = c.getConstructors()[0];
+            Class[] parameterTypes = ctor.getParameterTypes();
+            int numberOfParams = ctor.getParameterCount();
+            Object[] args = new Object[numberOfParams];
+            args[0] = label;
+
+            for(int i = 1; i < args.length; i++) {
+                if(parameterTypes[i] == int.class) {
+                    args[i] = scanInt();
+                } else {
+                    args[i] = scan();
+                }
+            }
+
+            output = (Instruction) ctor.newInstance(args);
+
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
+        return output;
     }
 
     /*
