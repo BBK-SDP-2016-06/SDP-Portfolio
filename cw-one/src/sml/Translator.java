@@ -82,7 +82,6 @@ public class Translator {
     // removed. Translate line into an instruction with label label
     // and return the instruction
     public Instruction getInstruction(String label) {
-        Instruction output = null;
         if (line.equals("")) {
             return null;
         }
@@ -98,7 +97,6 @@ public class Translator {
             int numberOfParams = ctor.getParameterCount();
             Object[] args = new Object[numberOfParams];
             args[0] = label;
-
             for(int i = 1; i < args.length; i++) {
                 if(parameterTypes[i] == int.class) {
                     args[i] = scanInt();
@@ -107,13 +105,13 @@ public class Translator {
                 }
             }
 
-            output = (Instruction) ctor.newInstance(args);
+            return (Instruction) ctor.newInstance(args);
 
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
             e.printStackTrace();
             System.exit(-1);
+            return null;
         }
-        return output;
     }
 
     /*
