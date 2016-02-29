@@ -12,7 +12,6 @@ package sml;
  *
  * @author George Shiangoli
  */
-
 public class AddInstruction extends Instruction {
 
     private int result;
@@ -58,8 +57,7 @@ public class AddInstruction extends Instruction {
      * on the addition taking place, the registers involved and the register that the result gets stored
      * in.
      *
-     * @return a string of the format "label: opcode op1 + op2 to result" of this instruction. This
-     * string subsequently gets built upon by subclasses extending this superclass.
+     * @return a string of the format "label: opcode op1 + op2 to result".
      */
     @Override
     public String toString() {
