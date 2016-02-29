@@ -7,7 +7,6 @@ package sml;
 
 public class BnzInstruction extends Instruction {
     private int register;
-    private int value = 0;
     private String nextLabel;
 
     public BnzInstruction(String label, String opcode) {
@@ -22,7 +21,7 @@ public class BnzInstruction extends Instruction {
 
     @Override
     public void execute(Machine m) {
-        value = m.getRegisters().getRegister(register);
+        int value = m.getRegisters().getRegister(register);
         if(value != 0) {
             m.setPc(m.getLabels().indexOf(nextLabel));
         }
@@ -30,12 +29,6 @@ public class BnzInstruction extends Instruction {
 
     @Override
     public String toString() {
-        String output = super.toString() + " register " + register + " value is " + value;
-        if(value != 0) {
-            output += " loop to " + nextLabel;
-        } else {
-            output += " exit loop";
-        }
-        return output;
+        return super.toString() + " loops to " + nextLabel + " while register " + register + " value is not 0" ;
     }
 }
