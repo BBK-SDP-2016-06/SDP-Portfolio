@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class Translator {
 
-    private static final String PATH = "/Users/keith/Courses/sdp/2016/SDP2016/SML/src/";
+    private static final String PATH = "C:\\Users\\George\\Documents\\Computer Science\\05 - Software Design and Programming\\SDP-Portfolio\\cw-one\\src\\testing\\";
     // word + line is the part of the current line that's not yet processed
     // word has no whitespace
     // If word and line are not empty, line begins with whitespace
