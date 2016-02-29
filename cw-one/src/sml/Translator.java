@@ -95,15 +95,20 @@ public class Translator {
                 s1 = scanInt();
                 s2 = scanInt();
                 return new AddInstruction(label, r, s1, s2);
-            case "lin":
-                r = scanInt();
-                x = scanInt();
-                return new LinInstruction(label, r, x);
             case "sub":
                 r = scanInt();
                 s1 = scanInt();
                 s2 = scanInt();
                 return new SubInstruction(label, r, s1, s2);
+            case "mul":
+                r = scanInt();
+                s1 = scanInt();
+                s2 = scanInt();
+                return new MulInstruction(label, r, s1, s2);
+            case "lin":
+                r = scanInt();
+                x = scanInt();
+                return new LinInstruction(label, r, x);
         }
 
         // You will have to write code here for the other instructions.
