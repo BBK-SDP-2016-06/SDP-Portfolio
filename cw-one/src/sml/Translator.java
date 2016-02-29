@@ -48,6 +48,9 @@ public class Translator {
                 String label = scan();
 
                 if (label.length() > 0) {
+                    if(labels.indexOf(label) != -1) {
+                        throw new IllegalArgumentException("Duplicate labels found in " + fileName);
+                    }
                     Instruction ins = getInstruction(label);
                     if (ins != null) {
                         labels.addLabel(label);
@@ -63,6 +66,10 @@ public class Translator {
             }
         } catch (IOException ioE) {
             System.out.println("File: IO error " + ioE.getMessage());
+            System.exit(-1);
+            return false;
+        } catch (IllegalArgumentException iaE) {
+            iaE.printStackTrace();
             System.exit(-1);
             return false;
         }
