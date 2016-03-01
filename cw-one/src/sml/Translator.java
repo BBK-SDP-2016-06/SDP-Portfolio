@@ -106,8 +106,9 @@ public class Translator {
         }
 
         /*
-          ensures that className is correct. However this does mean that all new Instructions created must follow
-          the same format e.g. mod -> ModInstruction, percent -> PercentInstruction
+          Following code block builds the className to be searched for. However this also means
+          that all new Instructions created must follow the same format e.g. mod -> ModInstruction,
+          percent -> PercentInstruction. All new instructions must be located within the same package as this class.
         */
         String ins = scan();
         String packageName = this.getClass().getPackage().getName();
