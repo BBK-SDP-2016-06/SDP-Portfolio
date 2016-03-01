@@ -107,7 +107,7 @@ public class Translator {
 
         /*
           ensures that className is correct. However this does mean that all new Instructions created must follow
-          the same format e.g. modulus -> ModInstruction, Percent -> PerInstruction
+          the same format e.g. mod -> ModInstruction, percent -> PercentInstruction
         */
         String ins = scan();
         String packageName = this.getClass().getPackage().getName();
