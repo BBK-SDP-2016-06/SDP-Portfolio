@@ -105,13 +105,17 @@ public class Translator {
             return null;
         }
 
+        /*
+          ensures that className is correct. However this does mean that all new Instructions created must follow
+          the same format e.g. modulus -> ModInstruction, Percent -> PerInstruction
+        */
         String ins = scan();
         String packageName = this.getClass().getPackage().getName();
         String className = packageName + "." + ins.substring(0, 1).toUpperCase() + ins.substring(1) + "Instruction";
 
         try {
             Class c = Class.forName(className);
-            Constructor ctor = c.getConstructors()[0];
+            Constructor ctor = c.getConstructors()[0]; //will have to be amended if new classes have more than one constructor
             Class[] parameterTypes = ctor.getParameterTypes();
             int numberOfParams = ctor.getParameterCount();
             Object[] args = new Object[numberOfParams];
