@@ -42,8 +42,8 @@ public class AddInstruction extends Instruction {
      */
     @Override
     public void execute(Machine m) {
-        extractValues(m);
-        m.getRegisters().setRegister(targetRegister, operandValues.get(0)+ operandValues.get(1));
+        int[] values = getValues(m);
+        m.getRegisters().setRegister(targetRegister, values[0] + values[1]);
     }
 
     /**
@@ -56,8 +56,6 @@ public class AddInstruction extends Instruction {
      */
     @Override
     public String toString() {
-        return super.toString() + " " + operandRegisters.get(0) + " + "
-                                      + operandRegisters.get(1) + " to "
-                                      + targetRegister;
+        return super.toString() + mathString("+");
     }
 }

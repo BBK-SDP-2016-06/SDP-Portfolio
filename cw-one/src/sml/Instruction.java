@@ -14,8 +14,7 @@ public abstract class Instruction {
 
     protected String label;
     protected String opcode;
-    protected ArrayList<Integer> operandRegisters;
-    protected ArrayList<Integer> operandValues;
+    protected ArrayList<Integer> operands;
     protected int targetRegister;
 
     /**
@@ -55,14 +54,21 @@ public abstract class Instruction {
     }
 
     public void populateOperandRegisters(int...registers) {
-        operandRegisters = new ArrayList<>();
+        operands = new ArrayList<>();
         for(int i : registers) {
-            operandRegisters.add(i);
+            operands.add(i);
         }
     }
 
-    public void extractValues(Machine m) {
-        operandValues = new ArrayList<>();
-        operandRegisters.forEach(i -> operandValues.add(m.getRegisters().getRegister(i)));
+    public int[] getValues(Machine m) {
+        int[] values = new int[operands.size()];
+        for(int i = 0; i < values.length; i++) {
+            values[i] = m.getRegisters().getRegister(operands.get(i));
+        }
+        return values;
+    }
+
+    public String mathString(String operator) {
+        return " " + " " + operands.get(0) + " " + operator + " " + operands.get(1) + " to " + targetRegister;
     }
 }
