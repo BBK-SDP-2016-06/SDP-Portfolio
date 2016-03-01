@@ -14,14 +14,10 @@ package sml;
  */
 public class AddInstruction extends Instruction {
 
-    private int result;
-    private int op1;
-    private int op2;
-
     /**
      * The primary constructor of this class calls the constructor of the extended
      * abstract class Instruction to initially set the label and opcode parameters.
-     * The constructor also initialises the local fields result, op1 and op2.
+     * The constructor also sets the target register and populates the operand list.
      *
      * @param label the label of the instruction. This is an identifier that can take the
      *              form of any sequence of non-whitespace characters.
@@ -34,9 +30,8 @@ public class AddInstruction extends Instruction {
      */
     public AddInstruction(String label, int result, int op1, int op2) {
         super(label, "add");
-        this.result = result;
-        this.op1 = op1;
-        this.op2 = op2;
+        setTargetRegister(result);
+        populateOperandRegisters(op1, op2);
     }
 
     /**
@@ -47,9 +42,8 @@ public class AddInstruction extends Instruction {
      */
     @Override
     public void execute(Machine m) {
-        int value1 = m.getRegisters().getRegister(op1);
-        int value2 = m.getRegisters().getRegister(op2);
-        m.getRegisters().setRegister(result, value1 + value2);
+        extractValues(m);
+        m.getRegisters().setRegister(targetRegister, operandValues.get(0)+ operandValues.get(1));
     }
 
     /**
@@ -62,6 +56,8 @@ public class AddInstruction extends Instruction {
      */
     @Override
     public String toString() {
-        return super.toString() + " " + op1 + " + " + op2 + " to " + result;
+        return super.toString() + " " + operandRegisters.get(0) + " + "
+                                      + operandRegisters.get(1) + " to "
+                                      + targetRegister;
     }
 }

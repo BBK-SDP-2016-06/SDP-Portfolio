@@ -1,5 +1,7 @@
 package sml;
 
+import java.util.ArrayList;
+
 /**
  * This class is the superclass of the classes for machine instructions. It holds the
  * fields that are common across all instructions that are implemented by the Simple
@@ -12,6 +14,9 @@ public abstract class Instruction {
 
     protected String label;
     protected String opcode;
+    protected ArrayList<Integer> operandRegisters;
+    protected ArrayList<Integer> operandValues;
+    protected int targetRegister;
 
     /**
      * The primary constructor that gets called by all instruction subclasses. It
@@ -44,4 +49,20 @@ public abstract class Instruction {
      * @param m the machine that this instruction gets executed upon.
      */
     public abstract void execute(Machine m);
+
+    public void setTargetRegister(int register) {
+        targetRegister = register;
+    }
+
+    public void populateOperandRegisters(int...registers) {
+        operandRegisters = new ArrayList<>();
+        for(int i : registers) {
+            operandRegisters.add(i);
+        }
+    }
+
+    public void extractValues(Machine m) {
+        operandValues = new ArrayList<>();
+        operandRegisters.forEach(i -> operandValues.add(m.getRegisters().getRegister(i)));
+    }
 }

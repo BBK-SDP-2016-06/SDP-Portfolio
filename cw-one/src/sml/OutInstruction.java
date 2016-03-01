@@ -13,12 +13,10 @@ package sml;
  */
 public class OutInstruction extends Instruction {
 
-    private int register;
-
     /**
      * The primary constructor of this class calls the constructor of the extended
      * abstract class Instruction to initially set the label and opcode parameters.
-     * The constructor also initialises the register whose value will be printed.
+     * The constructor also sets the target register to be printed.
      *
      * @param label the label of the instruction. This is an identifier that can take the
      *              form of any sequence of non-whitespace characters.
@@ -26,7 +24,7 @@ public class OutInstruction extends Instruction {
      */
     public OutInstruction(String label, int register) {
         super(label, "out");
-        this.register = register;
+        setTargetRegister(register);
     }
 
     /**
@@ -37,7 +35,7 @@ public class OutInstruction extends Instruction {
      */
     @Override
     public void execute(Machine m) {
-        int value = m.getRegisters().getRegister(register);
+        int value = m.getRegisters().getRegister(targetRegister);
         System.out.println(value);
     }
 
@@ -50,6 +48,6 @@ public class OutInstruction extends Instruction {
      */
     @Override
     public String toString() {
-        return super.toString() + " register " + register + " printed to console";
+        return super.toString() + " register " + targetRegister + " printed to console";
     }
 }

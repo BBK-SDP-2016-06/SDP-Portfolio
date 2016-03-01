@@ -14,13 +14,13 @@ package sml;
  */
 public class BnzInstruction extends Instruction {
 
-    private int register;
     private String nextLabel;
 
     /**
      * The primary constructor of this class calls the constructor of the extended
      * abstract class Instruction to initially set the label and opcode parameters.
-     * The constructor also initialises the local fields register and nextLabel.
+     * The constructor also sets the target register to be compared and the label of
+     * the next program instruction.
      *
      * @param label the label of the instruction. This is an identifier that can take the
      *              form of any sequence of non-whitespace characters.
@@ -30,7 +30,7 @@ public class BnzInstruction extends Instruction {
      */
     public BnzInstruction(String label, int register, String nextLabel) {
         super(label, "bnz");
-        this.register = register;
+        setTargetRegister(register);
         this.nextLabel = nextLabel;
     }
 
@@ -43,7 +43,7 @@ public class BnzInstruction extends Instruction {
      */
     @Override
     public void execute(Machine m) {
-        int value = m.getRegisters().getRegister(register);
+        int value = m.getRegisters().getRegister(targetRegister);
         if(value != 0) {
             m.setPc(m.getLabels().indexOf(nextLabel));
         }
@@ -58,6 +58,7 @@ public class BnzInstruction extends Instruction {
      */
     @Override
     public String toString() {
-        return super.toString() + " loops back to " + nextLabel + " while register " + register + " value is not 0" ;
+        return super.toString() + " jumps to " + nextLabel + " while register "
+                                + targetRegister + " value is not 0";
     }
 }

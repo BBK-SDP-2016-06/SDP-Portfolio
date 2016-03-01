@@ -12,13 +12,13 @@ package sml;
  * @author George Shiangoli
  */
 public class LinInstruction extends Instruction {
-    private int register;
+
     private int value;
 
     /**
      * The primary constructor of this class calls the constructor of the extended
      * abstract class Instruction to initially set the label and opcode parameters.
-     * The constructor also initialises the local fields register and value.
+     * The constructor also sets the target register and value to be stored in the register.
      *
      * @param label the label of the instruction. This is an identifier that can take the
      *              form of any sequence of non-whitespace characters.
@@ -27,9 +27,8 @@ public class LinInstruction extends Instruction {
      */
     public LinInstruction(String label, int register, int value) {
         super(label, "lin");
-        this.register = register;
+        setTargetRegister(register);
         this.value = value;
-
     }
 
     /**
@@ -40,7 +39,7 @@ public class LinInstruction extends Instruction {
      */
     @Override
     public void execute(Machine m) {
-        m.getRegisters().setRegister(register, value);
+        m.getRegisters().setRegister(targetRegister, value);
     }
 
     /**
@@ -52,6 +51,6 @@ public class LinInstruction extends Instruction {
      */
     @Override
     public String toString() {
-        return super.toString() + " register " + register + " value is " + value;
+        return super.toString() + " register " + targetRegister + " value is " + value;
     }
 }
