@@ -1,0 +1,1 @@
+Group account:  https://github.com/BBK-PiJ-2015-79/SDP-ray-tracer
